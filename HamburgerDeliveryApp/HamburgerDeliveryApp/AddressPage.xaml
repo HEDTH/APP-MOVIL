@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:HamburgerDeliveryApp.Behaviors"
+             xmlns:local="clr-namespace:HamburgerDeliveryApp"  
+             x:Class="HamburgerDeliveryApp.AddressPage"
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False"
+             Title="Haz tu pedido"
+             BindingContext="{x:Static local:ViewModelLocator.AddressViewModel}">
+    <StackLayout>
+        <ScrollView>
+            <StackLayout Padding="20" VerticalOptions="FillAndExpand">
+                <!-- Encabezado -->
+                <Label Text="Haz tu pedido" FontSize="28" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center"/>
+
+                <!-- Dirección de Entrega -->
+                <Label Text="Dirección de entrega" FontSize="20" FontAttributes="Bold" TextColor="Black"/>
+                <Label Text="{Binding Address}" FontSize="14" TextColor="Black"/>
+                <Button Text="Cambiar" BackgroundColor="#FFCA1A" TextColor="Black" Margin="0" CornerRadius="10" Command="{Binding ChangeAddressCommand}">
+
+                </Button>
+
+                <!-- Tiempo de Entrega -->
+                <Label Text="Tiempo de entrega" FontSize="20" FontAttributes="Bold" TextColor="Black"/>
+                <StackLayout>
+                    <Button Text="Prioritaria (45-60 min)" BackgroundColor="{Binding PriorityButtonColor}" TextColor="Black" Margin="0, 0, 0, 10" CornerRadius="10" Command="{Binding SelectPriorityDeliveryCommand}" IsEnabled="{Binding IsPriorityButtonEnabled}">
+                        <Button.Behaviors>
+                            <behaviors:ButtonPressBehavior IsSelected="{Binding IsPrioritySelected}" />
+                        </Button.Behaviors>
+                    </Button>
+                    <Button Text="Básica (50-65 min)" BackgroundColor="{Binding BasicButtonColor}" TextColor="Black" Margin="0, 0, 0, 10" CornerRadius="10" Command="{Binding SelectBasicDeliveryCommand}" IsEnabled="{Binding IsBasicButtonEnabled}">
+                        <Button.Behaviors>
+                            <behaviors:ButtonPressBehavior IsSelected="{Binding IsBasicSelected}" />
+                        </Button.Behaviors>
+                    </Button>
+                </StackLayout>
+
+                <!-- Items del Carrito -->
+                <Label Text="Tu carrito" FontSize="20" FontAttributes="Bold" TextColor="Black"/>
+                <CollectionView ItemsSource="{Binding CartItems}" HeightRequest="{Binding CartItemsHeight}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" Padding="10">
+                                <Image Source="{Binding Hamburger.ImageUrl}" HeightRequest="80" WidthRequest="80"/>
+                                <StackLayout Orientation="Vertical" VerticalOptions="Center">
+                                    <Label Text="{Binding Hamburger.Name}" FontSize="16" TextColor="Black"/>
+                                    <Label Text="{Binding Quantity, StringFormat='Cantidad: {0}'}" FontSize="14" TextColor="Black"/>
+                                    <Label Text="{Binding TotalPrice, StringFormat='Total: {0:C}'}" FontSize="14" TextColor="Black"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Método de Pago -->
+                <Label Text="Método de pago" FontSize="20" FontAttributes="Bold" TextColor="Black"/>
+                <Label Text="{Binding SelectedPaymentMethod.MethodName}" FontSize="16" TextColor="Black"/>
+                <Label Text="{Binding SelectedPaymentMethod.UserName}" FontSize="14" TextColor="Gray"/>
+
+                <Button Text="Cambiar" BackgroundColor="#FFCA1A" TextColor="Black" Margin="0" CornerRadius="10" Command="{Binding ChangePaymentMethodCommand}" />
+
+
+                <!-- Aplicar Cupón -->
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Padding="10">
+                    <Label Text="Cupón" FontSize="16" TextColor="Black" HorizontalOptions="Start"/>
+                    <Entry Placeholder="Código de cupón" Text="{Binding CouponCode}" HorizontalOptions="FillAndExpand" TextColor="Black"/>
+                    <Button Text="Aplicar" BackgroundColor="#FFCA1A" TextColor="Black" Margin="0" CornerRadius="10" Command="{Binding ApplyCouponCommand}">
+
+                    </Button>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+        <!-- Total y Botón de Pagar -->
+        <Grid Padding="20" VerticalOptions="End">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Total y Botón de Pagar -->
+            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Total, StringFormat='Total: {0:C}'}" FontSize="20" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center"/>
+            <Button Grid.Row="0" Grid.Column="1" Text="Hacer pedido" Command="{Binding NextCommand}" BackgroundColor="Green" TextColor="White" FontAttributes="Bold" CornerRadius="10" Margin="10,0" VerticalOptions="Center"/>
+
+            <!-- Botones de Navegación -->
+            <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <ImageButton Grid.Column="0"
+            Source="home.png"
+            BackgroundColor="Transparent"
+            WidthRequest="30"
+            HeightRequest="40"
+            HorizontalOptions="Center"
+            Margin="5" 
+            Clicked="OnHomeButtonClicked" />
+
+                <ImageButton Grid.Column="1"
+            Source="lists.png"
+            BackgroundColor="Transparent"
+            WidthRequest="30"
+            HeightRequest="40"
+            HorizontalOptions="Center"
+            Margin="5" 
+            Clicked="OnOrdersButtonClicked" />
+
+                <ImageButton Grid.Column="2"
+            Source="user.png"
+            BackgroundColor="Transparent"
+            WidthRequest="30"
+            HeightRequest="40"
+            HorizontalOptions="Center"
+            Margin="5" 
+            Clicked="OnUserButtonClicked" />
+            </Grid>
+        </Grid>
+    </StackLayout>
+</ContentPage>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:HamburgerDeliveryApp.Behaviors"
+             x:Class="HamburgerDeliveryApp.AddCreditCardPage"
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False"
+             Title="Agregar tarjeta">
+
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+
+            <!-- Back Button -->
+            <ImageButton Source="back_arrow.png"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Start"
+                         Clicked="OnBackButtonClicked" />
+
+            <!-- Title -->
+            <Label Text="Agregar tarjeta" 
+                   FontSize="Large" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" 
+                   Margin="0,20,0,0"
+                   TextColor="Black"/>
+
+            <!-- Card Image -->
+            <Image Source="card_image.png"
+                   HeightRequest="200"
+                   HorizontalOptions="Center"
+                   Margin="0,20,0,20"/>
+
+            <!-- Card Number Entry -->
+            <Entry Placeholder="Número de tarjeta" 
+                   Text="{Binding NewCard.CardNumber}"
+                   Keyboard="Numeric"
+                   FontSize="Medium"
+                   Margin="0,0,0,10"
+                   TextColor="Black"
+                   PlaceholderColor="Black">
+                <Entry.Behaviors>
+                    <behaviors:CardNumberBehavior />
+                </Entry.Behaviors>
+            </Entry>
+
+            <!-- Name and Surname -->
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Entry Placeholder="Nombre"
+                       Text="{Binding NewCard.FirstName}"
+                       FontSize="Medium"
+                       HorizontalOptions="FillAndExpand"
+                       PlaceholderColor="Black"
+                       TextColor="Black"/>
+
+                <Entry Placeholder="Apellido"
+                       Text="{Binding NewCard.LastName}"
+                       FontSize="Medium"
+                       HorizontalOptions="FillAndExpand"
+                       PlaceholderColor="Black"
+                       TextColor="Black"/>
+            </StackLayout>
+
+            <!-- Expiration and CVV -->
+            <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,10,0,0">
+                <Entry Placeholder="MM/YY"
+                       Text="{Binding NewCard.ExpirationDate}"
+                       FontSize="Medium"
+                       Keyboard="Numeric"
+                       HorizontalOptions="FillAndExpand"
+                       PlaceholderColor="Black"
+                       TextColor="Black">
+                    <Entry.Behaviors>
+                        <behaviors:ExpirationDateBehavior />
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Entry Placeholder="XXX"
+                       Text="{Binding NewCard.CVV}"
+                       FontSize="Medium"
+                       IsPassword="True"
+                       Keyboard="Numeric"
+                       HorizontalOptions="FillAndExpand"
+                       PlaceholderColor="Black"
+                       TextColor="Black">
+                    <Entry.Behaviors>
+                        <behaviors:CVVBehavior />
+                    </Entry.Behaviors>
+                </Entry>
+            </StackLayout>
+
+            <!-- Info Text -->
+            <Label Text="Cobraremos un monto aleatorio menor a 20 MXN para validar tu tarjeta. Este será devuelto de inmediato."
+                   FontSize="Small"
+                   HorizontalOptions="Center"
+                   Margin="0,20,0,0"
+                   TextColor="Black"/>
+
+            <!-- Save Button -->
+            <Button Text="Guardar"
+                    Command="{Binding SaveCommand}"
+                    FontSize="Medium"
+                    BackgroundColor="#FFCA1A"
+                    TextColor="Black"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="0" 
+                    CornerRadius="10"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+
+

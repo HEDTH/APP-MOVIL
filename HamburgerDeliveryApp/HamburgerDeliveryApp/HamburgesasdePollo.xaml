@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HamburgerDeliveryApp.HamburgesasdePollo"
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False">
+    
+    <StackLayout Orientation="Vertical" Padding="20">
+        <StackLayout Orientation="Horizontal" Padding="1" HorizontalOptions="End">
+            <Label Text="{Binding Total, StringFormat='Total: {0:C}'}" FontSize="Medium" VerticalOptions="Center" TextColor="Black" Margin="0,0,10,0"/>
+            <ImageButton Source="grocery.gif" 
+                      Command="{Binding ViewCartCommand}"
+                      BackgroundColor="Transparent"
+                      WidthRequest="40"
+                      HeightRequest="40"
+                      HorizontalOptions="End" />
+        </StackLayout>
+
+        <SearchBar x:Name="SearchBar"
+                Placeholder="Buscar"
+                Text="{Binding SearchText}"
+                VerticalOptions="Center"
+                HorizontalOptions="FillAndExpand"
+                WidthRequest="200"
+                PlaceholderColor="Black"
+                TextColor="Black" />
+
+        <ScrollView Orientation="Horizontal">
+            <StackLayout  Orientation="Horizontal" Padding="10">
+
+                <Button Text="CARNE" 
+             Command="{Binding ShowChickenBurgersCommand}" 
+             BackgroundColor="#FFCA1A" 
+             TextColor="Black" 
+             Margin="0" 
+             CornerRadius="10"
+             Clicked="Button_Clicked"/>
+                <Button Text="POLLO" 
+             Command="{Binding ShowChickenBurgersCommand}" 
+             BackgroundColor="#FFCA1A" 
+             TextColor="Black" 
+             Margin="0" 
+             CornerRadius="10"
+             Clicked="HamburPollo"/>
+                <Button Text="PAPAS" 
+             Command="{Binding ShowFriesCommand}" 
+             BackgroundColor="#FFCA1A" 
+             TextColor="Black" 
+             Margin="0" 
+             CornerRadius="10"/>
+                <Button Text="BEBIDAS" 
+             Command="{Binding ShowDrinksCommand}" 
+             BackgroundColor="#FFCA1A" 
+             TextColor="Black" 
+             Margin="0" 
+             CornerRadius="10"/>
+                <Button Text="POSTRES" 
+             Command="{Binding ShowDessertsCommand}" 
+             BackgroundColor="#FFCA1A" 
+             TextColor="Black" 
+             Margin="0" 
+             CornerRadius="10"/>
+            </StackLayout>
+        </ScrollView>
+
+        <CollectionView ItemsSource="{Binding FilteredHamburgers}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="2" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Vertical" Padding="10">
+                        <Image Source="{Binding ImageUrl}" HeightRequest="100" />
+                        <Label Text="{Binding Name}" 
+                       FontSize="16" 
+                       HorizontalOptions="Center" 
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black" />
+                        <Label Text="{Binding Precio, StringFormat='{}{0:C}'}" 
+                       FontSize="16" 
+                       HorizontalOptions="Center" 
+                       HorizontalTextAlignment="Center"
+                       TextColor="Black" />
+                        <Button Text="Agregar"
+                        Command="{Binding Path=BindingContext.AddToCartCommand, Source={x:Reference Name=SearchBar}}"
+                        CommandParameter="{Binding .}"
+                        BackgroundColor="#FFCA1A"
+                        TextColor="Black"
+                        CornerRadius="20"
+                        Margin="10"
+                        HorizontalOptions="Center"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+
+
+        <Grid VerticalOptions="EndAndExpand" Padding="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <ImageButton Grid.Column="0"
+              Source="home.png"
+              BackgroundColor="Transparent"
+              WidthRequest="30"
+              HeightRequest="40"
+              HorizontalOptions="Center"
+              Margin="5" 
+              Clicked="OnHomeButtonClicked" />
+
+            <ImageButton Grid.Column="1"
+              Source="lists.png"
+              BackgroundColor="Transparent"
+              WidthRequest="30"
+              HeightRequest="40"
+              HorizontalOptions="Center"
+              Margin="5" 
+              Clicked="OnOrdersButtonClicked" />
+
+            <ImageButton Grid.Column="2"
+              Source="user.png"
+              BackgroundColor="Transparent"
+              WidthRequest="30"
+              HeightRequest="40"
+              HorizontalOptions="Center"
+              Margin="5" 
+              Clicked="OnUserButtonClicked" />
+        </Grid>
+    </StackLayout>
+</ContentPage>

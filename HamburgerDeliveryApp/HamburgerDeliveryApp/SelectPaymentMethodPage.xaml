@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HamburgerDeliveryApp.SelectPaymentMethodPage"
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False"
+             Title="Agregar método de pago">
+
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+
+            <!-- Back Button -->
+            <ImageButton Source="back_arrow.png"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Start"
+                         Clicked="OnBackButtonClicked" />
+
+            <!-- Title -->
+            <Label Text="Agregar método de pago" 
+                   FontSize="Large" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" 
+                   Margin="0,20,0,0"
+                   TextColor="Black"/>
+
+            <!-- Credit/Debit Card Option -->
+            <Frame Padding="10" CornerRadius="10" Margin="10">
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <Image Source="credit_card_icon.png" HeightRequest="50" WidthRequest="50" />
+                        <Label Text="Tarjeta de Crédito/Débito" 
+                               FontSize="Medium" 
+                               VerticalOptions="Center" 
+                               HorizontalOptions="StartAndExpand" 
+                               TextColor="Black"/>
+                        <Image Source="chevron_right.png" HeightRequest="24" WidthRequest="24" VerticalOptions="Center" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="0,10,0,0">
+                        <Image Source="visa.png" HeightRequest="30" WidthRequest="30" />
+                        <Image Source="cardmaster.png" HeightRequest="30" WidthRequest="30" Margin="10,0,0,0" />
+                        <Image Source="amex_logo.png" HeightRequest="30" WidthRequest="30" Margin="10,0,0,0" />
+                    </StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AddCreditCardCommand}" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </Frame>
+
+            <!-- PayPal Option -->
+            <Frame Padding="10" CornerRadius="10" Margin="10">
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <Image Source="paypal.png" HeightRequest="50" WidthRequest="50" />
+                        <Label Text="PayPal" 
+                               FontSize="Medium" 
+                               VerticalOptions="Center" 
+                               HorizontalOptions="StartAndExpand" 
+                               TextColor="Black"/>
+                        <Image Source="chevron_right.png" HeightRequest="24" WidthRequest="24" VerticalOptions="Center" />
+                    </StackLayout>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UsePayPalCommand}" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+
+
+
+
+
+
+
+

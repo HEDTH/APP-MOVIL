@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:HamburgerDeliveryApp"
+             x:Class="HamburgerDeliveryApp.PaymentPage"
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False"
+             Title="Métodos de Pago"
+             BindingContext="{x:Static local:ViewModelLocator.PaymentViewModel}">
+
+
+    <StackLayout Padding="20">
+        <!-- Encabezado -->
+        <StackLayout Orientation="Horizontal" VerticalOptions="Start" Padding="0, 10, 0, 20">
+            <Button Text="&#x2190;" FontSize="24" TextColor="Black" BackgroundColor="Transparent" Command="{Binding GoBackCommand}" Clicked="RegresarCarro"/>
+            <Label Text="Vas a pagar 115.0" FontSize="28" FontAttributes="Bold" TextColor="Black" HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+
+        <!-- Métodos de pago -->
+        <Frame CornerRadius="10" Padding="10" BorderColor="LightGray">
+            <StackLayout>
+                <Label Text="Métodos de pago" FontSize="20" FontAttributes="Bold" TextColor="Black"/>
+                <Button Text="+ Agregar" BackgroundColor="Green" TextColor="White" CornerRadius="10" Command="{Binding AddPaymentMethodCommand}" HorizontalOptions="End" />
+                <ListView ItemsSource="{Binding PaymentMethods}" SeparatorVisibility="Default" HasUnevenRows="True" SelectionMode="Single">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Padding="10">
+                                    <Image Source="{Binding ImageUrl}" HeightRequest="40" WidthRequest="60" VerticalOptions="Center"/>
+                                    <StackLayout Orientation="Vertical" VerticalOptions="Center" Padding="10, 0, 0, 0">
+                                        <Label Text="{Binding MethodName}" FontSize="16" TextColor="Black"/>
+                                        <Label Text="{Binding UserName}" FontSize="14" TextColor="Gray"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Frame>
+
+        <!-- Botón Guardar -->
+        <Button Text="Guardar" BackgroundColor="Green" TextColor="White" CornerRadius="10" Command="{Binding SaveCommand}" VerticalOptions="EndAndExpand" />
+    </StackLayout>
+</ContentPage>
+
+

@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Emiliano\\source\\repos\\HamburgerDeliveryApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1BED2D7E-8F9F-4F85-82C5-1F29BDE082A7}|HamburgerDeliveryApp\\HamburgerDeliveryApp\\HamburgerDeliveryApp.csproj|c:\\users\\emiliano\\source\\repos\\hamburgerdeliveryapp\\hamburgerdeliveryapp\\hamburgerdeliveryapp\\mainpage.xaml||{2974C621-7033-421A-B08A-11D27B021D1B}",
+      "RelativeMoniker": "D:0:0:{1BED2D7E-8F9F-4F85-82C5-1F29BDE082A7}|HamburgerDeliveryApp\\HamburgerDeliveryApp\\HamburgerDeliveryApp.csproj|solutionrelative:hamburgerdeliveryapp\\hamburgerdeliveryapp\\mainpage.xaml||{2974C621-7033-421A-B08A-11D27B021D1B}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\Emiliano\\source\\repos\\HamburgerDeliveryApp\\HamburgerDeliveryApp\\HamburgerDeliveryApp\\MainPage.xaml",
+              "RelativeDocumentMoniker": "HamburgerDeliveryApp\\HamburgerDeliveryApp\\MainPage.xaml",
+              "ToolTip": "C:\\Users\\Emiliano\\source\\repos\\HamburgerDeliveryApp\\HamburgerDeliveryApp\\HamburgerDeliveryApp\\MainPage.xaml",
+              "RelativeToolTip": "HamburgerDeliveryApp\\HamburgerDeliveryApp\\MainPage.xaml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-08-12T15:30:20.537Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

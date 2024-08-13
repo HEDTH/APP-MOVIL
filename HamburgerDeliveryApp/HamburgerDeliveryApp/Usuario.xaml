@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:HamburgerDeliveryApp.ViewModels"
+             x:Class="HamburgerDeliveryApp.Usuario"
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False">
+
+    <!-- Establecer el BindingContext al ViewModel -->
+    
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Contenido Principal -->
+            <StackLayout Grid.Row="0" Padding="10" Spacing="30">
+                <Label Text="Datos Personales" 
+                       FontSize="24" 
+                       FontAttributes="Bold" 
+                       HorizontalOptions="Center" 
+                       Margin="0,20,0,20"
+                       TextColor="Black"/>
+
+                <!-- Sección de Nombre y Apellido -->
+                <Grid Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="user_icon.png" Grid.Column="0" WidthRequest="24" HeightRequest="24"/>
+                    <StackLayout Grid.Column="1" Spacing="0">
+                        <Label Text="Nombre y apellido" FontAttributes="Bold" TextColor="Black"/>
+                        <Label Text="{Binding Name}" TextColor="Black"/>
+                    </StackLayout>
+                    <ImageButton Source="edit_icon.png" Grid.Column="2" WidthRequest="24" HeightRequest="24" BackgroundColor="Transparent"/>
+                </Grid>
+
+                <!-- Sección de Correo Electrónico -->
+                <Grid Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="email_icon.png" Grid.Column="0" WidthRequest="24" HeightRequest="24"/>
+                    <StackLayout Grid.Column="1" Spacing="0">
+                        <Label Text="Correo Electrónico" FontAttributes="Bold" TextColor="Black"/>
+                        <Label Text="{Binding Email}" TextColor="Black"/>
+                    </StackLayout>
+                    <ImageButton Source="lock_icon.png" Grid.Column="2" WidthRequest="24" HeightRequest="24" BackgroundColor="Transparent"/>
+                </Grid>
+
+                <!-- Sección de Teléfono -->
+                <Grid Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="phone_icon.png" Grid.Column="0" WidthRequest="24" HeightRequest="24"/>
+                    <StackLayout Grid.Column="1" Spacing="0">
+                        <Label Text="Teléfono" FontAttributes="Bold" TextColor="Black"/>
+                        <Label Text="{Binding Phone}" TextColor="Black"/>
+                    </StackLayout>
+                    <ImageButton Source="edit_icon.png" Grid.Column="2" WidthRequest="24" HeightRequest="24" BackgroundColor="Transparent"/>
+                </Grid>
+
+                <!-- Sección de Fecha de nacimiento -->
+                <Grid Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="birthday_icon.png" Grid.Column="0" WidthRequest="24" HeightRequest="24"/>
+                    <StackLayout Grid.Column="1" Spacing="0">
+                        <Label Text="Fecha de nacimiento" FontAttributes="Bold" TextColor="Black"/>
+                        <Label Text="{Binding Birthdate}" TextColor="Black"/>
+                    </StackLayout>
+                    <ImageButton Source="edit_icon.png" Grid.Column="2" WidthRequest="24" HeightRequest="24" BackgroundColor="Transparent"/>
+                </Grid>
+
+                <!-- Sección de Dirección -->
+                <Grid Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="id_icon.png" Grid.Column="0" WidthRequest="24" HeightRequest="24"/>
+                    <StackLayout Grid.Column="1" Spacing="0">
+                        <Label Text="Dirección" FontAttributes="Bold" TextColor="Black"/>
+                        <Label Text="{Binding Address}" TextColor="Black"/>
+                    </StackLayout>
+                    <ImageButton Source="edit_icon.png" Grid.Column="2" WidthRequest="24" HeightRequest="24" BackgroundColor="Transparent"/>
+                </Grid>
+
+                <!-- Botones de acción -->
+                <StackLayout Grid.Column="1" Spacing="0">
+                    <Button Text="Guardar Cambios" 
+                            HorizontalOptions="Start" 
+                            BackgroundColor="#FFCA1A" 
+                            TextColor="Black" 
+                            CornerRadius="20" 
+                            Margin="10" 
+                            Command="{Binding SaveCommand}"/>
+
+                    <Button Text="Cerrar Sesión" 
+                            HorizontalOptions="Start" 
+                            BackgroundColor="#FFCA1A" 
+                            TextColor="Black" 
+                            CornerRadius="20" 
+                            Margin="10" 
+                            Command="{Binding LogoutCommand}"/>
+                    <Button Text="Iniciar Sesión" 
+                    BackgroundColor="#FFCA1A" 
+                    TextColor="Black" 
+                    CornerRadius="20" 
+                    Margin="20"
+                    Clicked="OnLoginButtonClicked"/>
+                    
+                </StackLayout>
+            </StackLayout>
+
+            <!-- Barra de Navegación Inferior -->
+            <Grid Grid.Row="1" Padding="1" VerticalOptions="EndAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <ImageButton Grid.Column="0"
+                  Source="home.png"
+                  BackgroundColor="Transparent"
+                  WidthRequest="30"
+                  HeightRequest="40"
+                  HorizontalOptions="Center"
+                  Margin="5" 
+                  Clicked="OnHomeButtonClicked"
+                  />
+
+                <ImageButton Grid.Column="1"
+                  Source="lists.png"
+                  BackgroundColor="Transparent"
+                  WidthRequest="30"
+                  HeightRequest="40"
+                  HorizontalOptions="Center"
+                  Margin="5" 
+                  Clicked="OnOrdersButtonClicked"
+                  />
+
+                <ImageButton Grid.Column="2"
+                  Source="user.png"
+                  BackgroundColor="Transparent"
+                  WidthRequest="30"
+                  HeightRequest="40"
+                  HorizontalOptions="Center"
+                  Margin="5" 
+                  Clicked="OnUserButtonClicked" 
+                  />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
+
+
